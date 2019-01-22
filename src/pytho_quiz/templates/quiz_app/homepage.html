@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>HomePage</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
-  </head>
-  <body>
-    <h1>Welcome to homepage</h1>
-    {{ insert }}
+{% extends 'base.html' %}
 
-  </body>
-</html>
+{% block content %}
+<h1 style="color:red;">HomePage</h1>
+{% endblock %}

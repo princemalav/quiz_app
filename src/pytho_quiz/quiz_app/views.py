@@ -40,7 +40,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return HttpResponse('loged in')
+                return HttpResponseRedirect(reverse('quiz_app:homepage'))
             else:
                 return HttpResponse('account not active')
         else:
@@ -51,3 +51,8 @@ def user_login(request):
 
 
     return render(request,'quiz_app/login.html')
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('quiz_app:homepage'))

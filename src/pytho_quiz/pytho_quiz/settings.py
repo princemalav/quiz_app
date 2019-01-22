@@ -122,4 +122,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
+    '/workspace/python_quiz/src/pytho_quiz/static',
+
 ]

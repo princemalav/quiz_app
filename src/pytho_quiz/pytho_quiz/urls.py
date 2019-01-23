@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from quiz_app import urls ,views
+#from quiz import urls
 from django.conf.urls import include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -23,6 +24,7 @@ urlpatterns = [
     url(r'^quiz_app/',include('quiz_app.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^logout',views.user_logout,name='loggedout'),
+    url(r'^sample',views.sample)
 ]
 
 urlpatterns += staticfiles_urlpatterns()

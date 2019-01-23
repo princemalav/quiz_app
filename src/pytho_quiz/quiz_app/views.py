@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render , reverse
+from django.shortcuts import render , reverse , get_object_or_404
 from django.shortcuts import HttpResponse , HttpResponseRedirect
 from .forms import UserRegistrationfrom
 from django.contrib.auth import login , authenticate , logout
 from django.contrib.auth.decorators import login_required
+from quiz_app.models import Sample , Quizquestion
 
 # Create your views here.
 def homepageview(request):
@@ -56,3 +57,30 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('quiz_app:homepage'))
+
+@login_required
+def question_view(request):
+    product = Quizquestion.objects.all()
+    my_dict = {'question':product}
+    return render(request,'quiz_app/question.html',context=my_dict)
+
+def sample(request):
+    product = Sample.objects.all()
+    my_dict = {'objects':product}
+    return render(request,'sample.html',context=my_dict)
+
+def check_answer(request):
+    correct_ans = Quizquestion.objects.get(id=2)
+    print(correct_ans.answer)
+    if request.method== 'POST':
+        user_answer = request.POST.get('option')
+        print(user_answer)
+        if user_answer == correct_ans.answer:
+            my_dict = {'object':'Your answer is correct'}
+            return render(request,'quiz_app/answer.html',context=my_dict)
+        else:
+            my_dict = {'object':'OOPS! Your answer is Wrong'}
+            return render(request,'quiz_app/answer.html',context=my_dict)
+    else:
+            return render(request,'quiz_app/question.html')
+    return render(request,'quiz_app/question.html')

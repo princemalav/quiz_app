@@ -5,6 +5,7 @@
 {% url 'quiz_app:homepage' as homepage_url %}
 {% url 'quiz_app:login' as login_url %}
 {% url 'quiz_app:register' as register_url %}
+{% url 'quiz_app:question' as question_url %}
 
 
 <html lang="en" dir="ltr">
@@ -34,6 +35,9 @@
              <a class="nav-link" href="{% url 'quiz_app:homepage' %}">Contact</a>
            </li>
            {% if request.user.is_authenticated %}
+           <li class="nav-item {% if request.path == question_url %} active{% endif %}">
+             <a class="nav-link" href="{% url 'quiz_app:question' %}">Test</a>
+           </li>
            <li class="nav-item {% if request.path == homepage_url %} active{% endif %}">
              <a class="nav-link" href="{% url 'loggedout' %}">Logout</a>
            </li>

@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class='container'>
-{% if question %}
-  {% for i in question %}
-    <div class="container">
-        <h6>{{ i.q_name }}</h6>
-    </div>
-    <div class="container">
-      <ol>
-        <form action="{% url 'quiz_app:answer' %}"  method="post">
-          {% csrf_token %}
-          <li><input type="radio" name="option" value="{{ i.opt1 }}">{{ i.opt1 }}</li><br>
-          <li><input type="radio" name="option" value="{{ i.opt2 }}">{{ i.opt2 }}</li><br>
-          <li><input type="radio" name="option" value="{{ i.opt3 }}">{{ i.opt3 }}</li><br>
-          <li><input type="radio" name="option" value="{{ i.opt4 }}">{{ i.opt4 }}</li><br>
-          <input type="submit" name="" value="submit">
-        </form>
-      </ol>
+  {% if question %}
+    {% for i in question %}
+      <div class="container">
+          <h6>{{ i.q_name }}</h6>
+      </div>
+      <div class="container">
+        <ol>
+          <form action="{% url 'quiz_app:question' %}"  method="post">
+            {% csrf_token %}
+            <li><input type="radio" name="option" value="{{ i.opt1 }}">{{ i.opt1 }}</li><br>
+            <li><input type="radio" name="option" value="{{ i.opt2 }}">{{ i.opt2 }}</li><br>
+            <li><input type="radio" name="option" value="{{ i.opt3 }}">{{ i.opt3 }}</li><br>
+            <li><input type="radio" name="option" value="{{ i.opt4 }}">{{ i.opt4 }}</li><br>
+            <input type="submit" name="" value="submit">
+          </form>
+        </ol>
 
-    </div>
-  {% endfor %}
-
-
-
-{% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
+  {{ message }}
+  <h6>Your respons is: {{ user_ans }}</h6>
+  <h6>Correct answer is: {{ right_ans }}</h6>
 </div>
 
 {% endblock %}

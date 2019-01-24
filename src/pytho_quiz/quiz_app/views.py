@@ -61,26 +61,34 @@ def user_logout(request):
 @login_required
 def question_view(request):
     product = Quizquestion.objects.all()
-    my_dict = {'question':product}
-    return render(request,'quiz_app/question.html',context=my_dict)
+    correct_ans = Quizquestion.objects.get(id=2)
+    my_dic = {'question':product}
+    if request.method == 'POST':
+        user_answer = request.POST.get('option')
+        print(user_answer)
+        if user_answer == correct_ans.answer:
+
+            my_dict = {'message':'Congratulation, your answer is right',
+            'right_ans':correct_ans,
+            'user_ans':user_answer,
+            'question':product}
+            return render(request,'quiz_app/question.html',context=my_dict)
+        else:
+            my_dict = {'message':'Oops!, your answer is Wrong',
+            'right_ans':correct_ans.answer,
+            'user_ans':user_answer,
+            'question':product}
+            return render(request,'quiz_app/question.html',context=my_dict)
+
+    return render(request,'quiz_app/question.html',context=my_dic)
 
 def sample(request):
     product = Sample.objects.all()
     my_dict = {'objects':product}
     return render(request,'sample.html',context=my_dict)
 
-def check_answer(request):
-    correct_ans = Quizquestion.objects.get(id=2)
-    print(correct_ans.answer)
-    if request.method== 'POST':
-        user_answer = request.POST.get('option')
-        print(user_answer)
-        if user_answer == correct_ans.answer:
-            my_dict = {'object':'Your answer is correct'}
-            return render(request,'quiz_app/answer.html',context=my_dict)
-        else:
-            my_dict = {'object':'OOPS! Your answer is Wrong'}
-            return render(request,'quiz_app/answer.html',context=my_dict)
-    else:
-            return render(request,'quiz_app/question.html')
-    return render(request,'quiz_app/question.html')
+def about(request):
+    return render(request,'quiz_app/about.html')
+
+def contact(request):
+    return render(request,'quiz_app/contact.html')

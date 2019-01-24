@@ -9,5 +9,7 @@ urlpatterns = [
     url(r'login',views.user_login,name='login'),
     url(r'logout',views.user_logout,name='logout'),
     url(r'question',views.question_view,name='question'),
-    url(r'answer',views.check_answer,name='answer'),
+    url(r'about',views.about,name='about'),
+    url(r'contact',views.contact,name='contact'),
+
 ]

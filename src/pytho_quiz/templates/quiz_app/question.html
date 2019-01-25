@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block content %}
 <div class='container'>
   {% if question %}
@@ -8,7 +9,7 @@
       </div>
       <div class="container">
         <ol>
-          <form action="{% url 'quiz_app:question' %}"  method="post">
+          <form method="post">
             {% csrf_token %}
             <li><input type="radio" name="option" value="{{ i.opt1 }}">{{ i.opt1 }}</li><br>
             <li><input type="radio" name="option" value="{{ i.opt2 }}">{{ i.opt2 }}</li><br>
@@ -24,6 +25,23 @@
   {{ message }}
   <h6>Your respons is: {{ user_ans }}</h6>
   <h6>Correct answer is: {{ right_ans }}</h6>
+</div>
+<div class="container">
+  <h6>Jump to question no.</h6>
+    <table>
+      <tr>
+        <td><a href="#">1</a></td>
+        <td  id='jump_to_ques'><a href="#">2</a></td>
+        <td id='jump_to_ques'><a href="#">3</a></td>
+        <td id='jump_to_ques'><a href="#">4</a></td>
+        <td id='jump_to_ques'><a href="#">5</a></td>
+        <td id='jump_to_ques'><a href="#">6</a></td>
+        <td id='jump_to_ques'><a href="#">7</a></td>
+        <td id='jump_to_ques'><a href="#">8</a></td>
+        <td id='jump_to_ques'><a href="#">9</a></td>
+        <td id='jump_to_ques'><a href="#">10</a></td>
+      </tr>
+    </table>
 </div>
 
 {% endblock %}

@@ -9,6 +9,7 @@
 {% url 'loggedout' as logout_url %}
 {% url 'quiz_app:about' as about_url %}
 {% url 'quiz_app:contact' as contact_url %}
+{% url 'quiz_app:quedetail' as quedetail_url %}
 
 <html lang="en" dir="ltr">
   <head>
@@ -37,8 +38,8 @@
              <a class="nav-link" href="{% url 'quiz_app:contact' %}">Contact</a>
            </li>
            {% if request.user.is_authenticated %}
-           <li class="nav-item {% if request.path == question_url %} active{% endif %}">
-             <a class="nav-link" href="{% url 'quiz_app:question' %}">Test</a>
+           <li class="nav-item {% if request.path == quedetail_url %} active{% endif %}">
+             <a class="nav-link" href="{% url 'quiz_app:quedetail' 2 %}">Test</a>
            </li>
            <li class="nav-item {% if request.path == logout_url %} active{% endif %}">
              <a class="nav-link" href="{% url 'loggedout' %}">Logout</a>

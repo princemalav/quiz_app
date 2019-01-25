@@ -69,7 +69,7 @@ def question_view(request):
         if user_answer == correct_ans.answer:
 
             my_dict = {'message':'Congratulation, your answer is right',
-            'right_ans':correct_ans,
+            'right_ans':correct_ans.answer,
             'user_ans':user_answer,
             'question':product}
             return render(request,'quiz_app/question.html',context=my_dict)
@@ -92,3 +92,10 @@ def about(request):
 
 def contact(request):
     return render(request,'quiz_app/contact.html')
+
+def question_detail_view(request,pk=1 , *args , **kwargs):
+    product = Quizquestion.objects.get(id=pk)
+    my_dict = {'question': product}
+    print(product.q_name)
+    print(product.id)
+    return render(request,'quiz_app/detail_question.html',context=my_dict)

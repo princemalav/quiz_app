@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  {{ question.q_name }}
+  <div class="container">
+    <ol>
+      <form method="post">
+        {% csrf_token %}
+        <li><input type="radio" name="option" value="{{ question.opt1 }}">{{ question.opt1 }}</li><br>
+        <li><input type="radio" name="option" value="{{ question.opt2 }}">{{ question.opt2 }}</li><br>
+        <li><input type="radio" name="option" value="{{ question.opt3 }}">{{ question.opt3 }}</li><br>
+        <li><input type="radio" name="option" value="{{ question.opt4 }}">{{ question.opt4 }}</li><br>
+        <input type="submit" name="" value="submit">
+      </form>
+    </ol>
+
+  </div>
+
+</div>
+<div class="container">
+  <h6>Jump to question no.</h6>
+    <table>
+      <tr>
+        <td><a href="{% url 'quiz_app:quedetail' 2 %}">1</a></td>
+        <td  id='jump_to_ques'><a href="{% url 'quiz_app:quedetail' 3 %}">2</a></td>
+        <td id='jump_to_ques'><a href="{% url 'quiz_app:quedetail' 4 %}">3</a></td>
+        <td id='jump_to_ques'><a href="{% url 'quiz_app:quedetail' 5 %}">4</a></td>
+        <td id='jump_to_ques'><a href="{% url 'quiz_app:quedetail' 6 %}">5</a></td>
+        <td id='jump_to_ques'><a href="{% url 'quiz_app:quedetail' 7 %}">6</a></td>
+        <td id='jump_to_ques'><a href="{% url 'quiz_app:quedetail' 8 %}">7</a></td>
+        <td id='jump_to_ques'><a href="{% url 'quiz_app:quedetail' 9 %}">8</a></td>
+      </tr>
+    </table>
+</div>
+
+{% endblock %}

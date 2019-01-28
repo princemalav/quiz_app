@@ -1,3 +1,3 @@
-#it is a quizz site
+#It is a Quiz site
 
-Here  i will create a python quizz site
+I used Django Fraemwork , HTML , CSS , Bootstrap in this project
